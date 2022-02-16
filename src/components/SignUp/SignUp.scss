@@ -1,0 +1,17 @@
+@import "../../styles/colors";
+
+.sign-up-ctn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .helping-text {
+    color: $lightGrey;
+  }
+}
+// .signup-logo {
+//   margin: 0 auto;
+// }
+
+// .sign-up-form {
+// }

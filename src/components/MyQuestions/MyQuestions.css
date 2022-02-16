@@ -1,0 +1,8 @@
+.my-question {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 0 !important;
+  width: 59%;
+}
