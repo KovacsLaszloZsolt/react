@@ -4,7 +4,7 @@ import finderReducer from "./finderReducer";
 const FinderContext = createContext(null);
 
 const GITHUB_URL = process.env.REACT_APP_GITHUB_URL;
-const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
+// const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
 
 export const FinderProvider = ({ children }) => {
   const initialState = {
@@ -24,11 +24,14 @@ export const FinderProvider = ({ children }) => {
     const params = new URLSearchParams({
       q: searchValue,
     });
-    const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
+    const response = await fetch(
+      `${GITHUB_URL}/search/users?${params}`
+      // , {
+      //   headers: {
+      //     Authorization: `token ${GITHUB_TOKEN}`,
+      //   },
+      // }
+    );
 
     const data = await response.json();
     dispatch({ type: "GET_USERS", payload: data.items });
@@ -36,11 +39,7 @@ export const FinderProvider = ({ children }) => {
 
   const fetchSelectedUser = async (login) => {
     dispatch({ type: "SET_LOADING" });
-    const response = await fetch(`${GITHUB_URL}/users/${login}`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
+    const response = await fetch(`${GITHUB_URL}/users/${login}`);
     const user = await response.json();
     dispatch({
       type: "GET_SELECTED_USER",
@@ -50,11 +49,7 @@ export const FinderProvider = ({ children }) => {
 
   const fetchSelectedUserRepos = async (login) => {
     dispatch({ type: "SET_LOADING" });
-    const response = await fetch(`${GITHUB_URL}/users/${login}/repos`, {
-      headers: {
-        Authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
+    const response = await fetch(`${GITHUB_URL}/users/${login}/repos`);
 
     const repos = await response.json();
     dispatch({
